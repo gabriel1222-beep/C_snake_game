@@ -66,22 +66,20 @@ static inline _Bool find_food(Snake *snake, position Food_pos, moving_direction 
   return 0;
 }
 static inline _Bool colision(Snake *snake, position Food_pos, moving_direction direction) {
-  switch (direction) {
-
-  case RIGHT:
-    if (snake->body_position[0].x + 1 == WORLD_X_SIZE) {
+    if (snake->body_position[0].x == WORLD_X_SIZE-1) {
       return 1;
     }
-  case LEFT:
     if (snake->body_position[0].x == 0) {
       return 1;
     }
-  case UP:
     if (snake->body_position[0].y == 0) {
       return 1;
     }
-  case DOWN:
-    if (snake->body_position[0].y + 1 == WORLD_Y_SIZE) {
+    if (snake->body_position[0].y == WORLD_Y_SIZE-1) {
+      return 1;
+    }
+  for(int i = 0;i<snake->length-1;i++){
+    if(snake->body_position[0].x == snake->body_position[i+1].x && snake->body_position[0].y == snake->body_position[i+1].y){
       return 1;
     }
   }
